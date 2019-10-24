@@ -1,15 +1,42 @@
-#include <SDL2/SDL.h>
-#include <iostream>
-#include "2d_engine.cpp"
+#include "head.h"
+#include "Actualizar.cpp"
+#include "Renderizar.cpp"
 
-int main(){
-	SDL_Init(SDL_INIT_VIDEO);
-	SDL_Window *window = SDL_CreateWindow("Hormiguero 2.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderPresent(renderer);
-	Empezar_Engine();
-	
 
-return 0;
+
+int main()
+{
+    //Creacion de objetos y ventana
+    int rectangulo1;
+    Funciones_De_Miguel fm;
+    RenderWindow Ventana(VideoMode(800, 600), "My window");
+    rectangulo1 = fm.rectangulo(10,10,200,200);
+    fm.eliminar_rectangulo(rectangulo1);
+
+    while (Ventana.isOpen())
+    {   
+        // Manejador de eventos
+        Event event;
+        if (Ventana.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                Ventana.close();
+        }
+        // Codigo
+
+
+        
+        //Renderizador
+        Ventana.clear(Color::Black);
+        if (fm.retornar_figuras().size() > 0)
+        {
+            for (auto figurin: fm.retornar_figuras())
+            {
+                Ventana.draw(figurin);
+            }
+        }
+        Ventana.display();
+        
+    }
+    return 0;
 }
