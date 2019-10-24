@@ -7,10 +7,11 @@
 int main()
 {
     //Creacion de objetos y ventana
+    int rectangulo1;
     Funciones_De_Miguel fm;
     RenderWindow Ventana(VideoMode(800, 600), "My window");
-    fm.rectangulo(10,10,200,200);
-
+    rectangulo1 = fm.rectangulo(10,10,200,200);
+    fm.eliminar_rectangulo(rectangulo1);
 
     while (Ventana.isOpen())
     {   
@@ -24,7 +25,7 @@ int main()
         // Codigo
 
 
-
+        
         //Renderizador
         Ventana.clear(Color::Black);
         if (fm.retornar_figuras().size() > 0)
