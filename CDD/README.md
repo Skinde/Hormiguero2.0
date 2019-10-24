@@ -18,5 +18,7 @@ En esta simulación se podrá apreciar como las hormigas reinas se adaptan al am
  * Hormiga obrera: Encargada de la recolección de la comida, exploración del terreno y cuidado de las larvas.
  * Insectos: Estos van a ser las presas de las hormigas y la fauna de la simulación.
  * Mundo: Se va a generar con el algoritmo de perlin y va a tener múltiples propiedades como: humedad, altura, etc.
+ * fm: "fm" es el objeto de la clase Funciones_De_Miguel su proposito es proveer funciones que automatizen el uso de la interfaz      
+       visual
 
 
