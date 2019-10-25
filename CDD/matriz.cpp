@@ -4,7 +4,7 @@
 #include<random>
 #include<cmath>
 typedef float valor;
-typedef float scl;
+typedef double scl;
 typedef std::random_device device;
 typedef std::uniform_real_distribution<scl> distribution;
 device dev; 

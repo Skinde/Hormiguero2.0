@@ -4,7 +4,7 @@
 #include<vector>
 #include<iomanip>
 typedef float valor;
-typedef float num;
+typedef double num;
 num randint(num first, num last);
 std::vector<std::vector<valor>> generar_matriz(valor filas, valor columnas);
 void perlin_generator(std::vector<std::vector<valor>> & matriz);

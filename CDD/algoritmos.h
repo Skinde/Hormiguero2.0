@@ -1,7 +1,9 @@
 #ifndef ALGORITMOS_H_
 #define ALGORITMOS_H_
-#include"objetos.h"
-#endif
+#include<iostream>
+#include<random>
+#include<cmath>
+//#include"algoritmos.cpp"
 class cosas_de_perlin
 {   
     public:
@@ -11,6 +13,7 @@ class cosas_de_perlin
     double polarizacion(double A, double B);
     double**  perlin(int nfilas, int ncol);
 };
+#endif
 
 
 

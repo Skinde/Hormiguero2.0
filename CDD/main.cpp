@@ -11,8 +11,22 @@ int main()
     Funciones_De_Miguel fm;
     cosas_de_perlin  cdp;
     RenderWindow Ventana(VideoMode(800, 600), "My window");
-    rectangulo1 = fm.rectangulo(10,10,200,200);
-
+    
+    double** mapa = new double*[600];
+	for(int i=0;i<600;i++){
+		mapa[i]=new double[800];
+	}
+    mapa = cdp.perlin(600,800);
+    for (int y = 0;y<600;y++)
+        {
+            for (int x =0; x<800; x++)
+            {
+                if (mapa[x][y] > 0.5)
+                {
+                    fm.rectangulo(x,y,1,1);
+                }
+            }
+        }
 
     while (Ventana.isOpen())
     {   
@@ -24,7 +38,8 @@ int main()
                 Ventana.close();
         }
         // Codigo
-        cdp.perlin(600,800);
+        
+        
 
         
         

@@ -1,43 +1,50 @@
 #include"algoritmos.h"
-#include "matriz.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector> 
 #include<cmath>
+typedef std::random_device device;
+typedef std::uniform_real_distribution<float> distribution;
+device dev; 
+
+float randint(float first, float last){
+	std::mt19937 gen(dev());
+        distribution dis(first, last);
+        return dis(gen);
+}
+
+
 double cosas_de_perlin::dot_product(std::vector<double> A,std::vector<double> B){
 	//probando que se suba con mi usuario 2
 	double x,y;
 	x=A[0]*B[0];
 	y=A[1]*B[1];
 	return x+y;
-};
+}
 std::vector <double> cosas_de_perlin::distance_vector(double x, double y,std::vector<double> B){
 	std::vector <double> distance;
 	distance[0]=(x-B[0])/800;
 	distance[1]=(y-B[1])/600;
 	return distance;
-};
+}
 
-double cosas_de_perlin::distance(std::vector <double> A, std::vector<double> B){
-	std::vector <double> temp=distance_vector(A,B);
-	return sqrt( temp[0]*temp[0]+ temp[1]*temp[1]);
-};
+
 double cosas_de_perlin::polarizacion(double A, double B){
 	return (A+B)/2;
-};
+}
 
 //perling: 
 double**  cosas_de_perlin::perlin(int nfilas, int ncol){
 	//arry para contener las coordenadas valores en las coodenadas x e ydel mapa
 	double** mapa = new double*[nfilas];
-	for(int i=0;i<ncol;i++){
+	for(int i=0;i<nfilas;i++){
 		mapa[i]=new double[ncol];
 	}
 	//vector para almacenar los resultados del perling		
 	std::vector <std::vector<double>> gradiente (9,std::vector<double>(2));
 	for(int i=0;i<9;i++){
 		for(int j=0;j<2;j++){
-			gradiente[i][j]=randint(-1,1);
+			gradiente[i][j]=randint(-1.0,1.0);
 		}
 	}
 	std::vector<std::vector<double>> posiciones (9,std::vector<double>(2));
@@ -86,4 +93,4 @@ double**  cosas_de_perlin::perlin(int nfilas, int ncol){
 	}
 	return mapa;
 
-};
+}
