@@ -4,30 +4,30 @@
 #include <iostream>
 #include <vector> 
 #include<cmath>
-double dot_product(std::vector<double> A,std::vector<double> B){
+double cosas_de_perlin::dot_product(std::vector<double> A,std::vector<double> B){
 	//probando que se suba con mi usuario 2
 	double x,y;
 	x=A[0]*B[0];
 	y=A[1]*B[1];
 	return x+y;
-}
-std::vector <double> distance_vector(double x, double y,std::vector<double> B){
+};
+std::vector <double> cosas_de_perlin::distance_vector(double x, double y,std::vector<double> B){
 	std::vector <double> distance;
 	distance[0]=(x-B[0])/800;
 	distance[1]=(y-B[1])/600;
 	return distance;
-}
+};
 
-double distance(std::vector <double> A, std::vector<double> B){
+double cosas_de_perlin::distance(std::vector <double> A, std::vector<double> B){
 	std::vector <double> temp=distance_vector(A,B);
 	return sqrt( temp[0]*temp[0]+ temp[1]*temp[1]);
-}
-double polarizacion(double A, double B){
+};
+double cosas_de_perlin::polarizacion(double A, double B){
 	return (A+B)/2;
-}
+};
 
 //perling: 
-void perlin(int nfilas, int ncol){
+void cosas_de_perlin::perlin(int nfilas, int ncol){
 	//arry para contener las coordenadas valores en las coodenadas x e ydel mapa
 	double mapa [ncol] [nfilas];
 	//vector para almacenar los resultados del perling		
@@ -72,8 +72,10 @@ void perlin(int nfilas, int ncol){
 			if (y>nfilas/2 && y<nfilas && x>ncol/2 && x<ncol)
 			{
 				//Sector 4
-				double polarizacion5 = polarizacion(dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),dot_product(distance_vector(x,y,posiciones[5]),gradiente[5]));
-				double polarizacion6 = polarizacion(dot_product(distance_vector(x,y,posiciones[7]),gradiente[7]),dot_product(distance_vector(x,y,posiciones[8]),gradiente[8]));
+				double polarizacion7 = polarizacion(dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),dot_product(distance_vector(x,y,posiciones[5]),gradiente[5]));
+				double polarizacion8 = polarizacion(dot_product(distance_vector(x,y,posiciones[7]),gradiente[7]),dot_product(distance_vector(x,y,posiciones[8]),gradiente[8]));
+				mapa[x][y] = polarizacion(polarizacion7, polarizacion8);
+
 
 			}
 
@@ -81,4 +83,4 @@ void perlin(int nfilas, int ncol){
 	}
 
 
-}
+};

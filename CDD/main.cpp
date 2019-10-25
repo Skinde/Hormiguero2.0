@@ -1,5 +1,5 @@
 #include "head.h"
-#include "algorit"
+#include "algoritmos.h"
 
 
 
@@ -23,8 +23,8 @@ int main()
                 Ventana.close();
         }
         // Codigo
-
-
+        
+        
         
         //Renderizador
         Ventana.clear(Color::Black);
