@@ -46,7 +46,7 @@ void perlin(int nfilas, int ncol){
 			if (y>0 && y<nfilas/2 && x>0 && x<ncol/2)
 			{
 				//Sector 1
-				mapa[y][x]=polarizacion(polarizacion(dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(0,0)),dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(ncol/2,0))),dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(0,nfilas/2)),dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(ncol/2,nfilas/2))));
+				mapa[x][y]=polarizacion(polarizacion(dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(0,0)),dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(ncol/2,0))),dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(0,nfilas/2)),dot_product(gradiente[0],distance_vector(Vector2f(x,y),)Vector2f(ncol/2,nfilas/2))));
 			}
 			if (y>0 && y<nfilas/2 && x>ncol/2 && x<ncol)
 			{
