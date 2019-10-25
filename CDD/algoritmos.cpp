@@ -3,11 +3,11 @@
 #include <iostream>
 #include <vector> 
 #include<cmath>
-double dot_product(std::vector<int> A,std::vector<int> B,std::vector<int> C,std::vector<int> D){
+double dot_product(std::vector<double> A,std::vector<double> B){
 	//probando que se suba con mi usuario 2
 	double x,y;
-	x=A[0]*B[0]*C[0]*D[0];
-	y=A[1]*B[1]*C[1]*D[1];
+	x=A[0]*B[0];
+	y=A[1]*B[1];
 	return x+y;
 }
 std::vector <double> distance_vector(std::vector<int> A,std::vector<int> B){
@@ -41,12 +41,12 @@ void perlin(int nfilas, int ncol){
 	{	
 		//sector 1//sector 2
 		//sector 3/sector 4
-		for(int x=0; x<ncol; x++)
+		for(int x=0; x<ncol; x+
 		{
 			if (y>0 && y<nfilas/2 && x>0 && x<ncol/2)
 			{
 				//Sector 1
-				mapa[x][y]=mapa[x][y]
+				mapa[y][x]=dot_product(gradiente[0],distance_vector(,))
 			}
 			if (y>0 && y<nfilas/2 && x>ncol/2 && x<ncol)
 			{
