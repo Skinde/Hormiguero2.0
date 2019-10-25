@@ -29,7 +29,7 @@ double cosas_de_perlin::polarizacion(double A, double B){
 //perling: 
 double**  cosas_de_perlin::perlin(int nfilas, int ncol){
 	//arry para contener las coordenadas valores en las coodenadas x e ydel mapa
-	double** mapa = new double*[ncol];
+	double** mapa = new double*[nfilas];
 	for(int i=0;i<ncol;i++){
 		mapa[i]=new double[ncol];
 	}

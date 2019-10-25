@@ -9,6 +9,7 @@ int main()
     //Creacion de objetos y ventana
     int rectangulo1;
     Funciones_De_Miguel fm;
+    cosas_de_perlin  cdp;
     RenderWindow Ventana(VideoMode(800, 600), "My window");
     rectangulo1 = fm.rectangulo(10,10,200,200);
 
@@ -23,7 +24,8 @@ int main()
                 Ventana.close();
         }
         // Codigo
-        
+        cdp.perlin(600,800);
+
         
         
         //Renderizador
