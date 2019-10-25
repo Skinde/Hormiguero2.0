@@ -27,9 +27,12 @@ double cosas_de_perlin::polarizacion(double A, double B){
 };
 
 //perling: 
-void cosas_de_perlin::perlin(int nfilas, int ncol){
+double**  cosas_de_perlin::perlin(int nfilas, int ncol){
 	//arry para contener las coordenadas valores en las coodenadas x e ydel mapa
-	double mapa [ncol] [nfilas];
+	double** mapa = new double*[ncol];
+	for(int i=0;i<ncol;i++){
+		mapa[i]=new double[ncol];
+	}
 	//vector para almacenar los resultados del perling		
 	std::vector <std::vector<double>> gradiente (9,std::vector<double>(2));
 	for(int i=0;i<9;i++){
@@ -81,6 +84,6 @@ void cosas_de_perlin::perlin(int nfilas, int ncol){
 
 		}
 	}
-
+	return mapa;
 
 };
