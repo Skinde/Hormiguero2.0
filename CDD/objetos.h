@@ -3,8 +3,8 @@
 #include"algoritmos.h"
 #include"matriz.h"
 #include<vector>
-usign coordenadas=int;
-using logitud=double;
+using coordenadas=int;
+using longitud=double;
 
 class punto_t{
 	private:
@@ -14,8 +14,8 @@ class punto_t{
 	public:
 	punto_t();
 	punto_t(int x, int y);
-	coordenada get_x();
-    coordenada get_y();
+	coordenadas get_x();
+    coordenadas get_y();
     longitud get_distancia(punto_t otro_punto);
 };
 

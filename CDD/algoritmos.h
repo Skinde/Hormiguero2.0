@@ -2,7 +2,7 @@
 #define ALGORITMOS_H_
 #include"objetos.h"
 
-float perlin(float x);
+void  perlin(int nfilas, int ncol);
 
 
 

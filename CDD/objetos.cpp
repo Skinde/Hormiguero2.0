@@ -3,10 +3,10 @@
 //clase punto
 punto_t::punto_t(): pos_x(0), pos_y(0) {}
 punto_t::punto_t(int x, int y):pos_x(x), pos_y(y) {}
-coordenada punto_t::get_x() {
+coordenadas punto_t::get_x() {
     return pos_x;
 }
-coordenada punto_t::get_y() {
+coordenadas punto_t::get_y() {
     return pos_y;
 }
 longitud punto_t::get_distancia(punto_t otro_punto) {
