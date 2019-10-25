@@ -3,6 +3,12 @@
 #include <iostream>
 #include <vector> 
 #include<cmath>
+double dot_product(std::vector<int> A,std::vector<int> B,std::vector<int> C,std::vector<int> D){
+	double x,y;
+	x=A[0]*B[0]*C[0]*D[0];
+	y=A[1]*B[1]*C[0]*D[0];
+	return x+y;
+}
 
 //perling: 
 void perlin(int nfilas, int ncol){
@@ -15,6 +21,7 @@ void perlin(int nfilas, int ncol){
 			gradiente[i][j]=randint(-1,1);
 		}
 	}
+	for()
 	// vector para los puntos aleatorios
 	int array;
 	int posx;
