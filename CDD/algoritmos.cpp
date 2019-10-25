@@ -1,5 +1,6 @@
 #include"algoritmos.h"
 #include<cmath>
+
 float perlin(float x){
 
 	if(x <= 0.0)

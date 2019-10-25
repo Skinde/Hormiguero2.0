@@ -11,7 +11,7 @@ int main()
     Funciones_De_Miguel fm;
     RenderWindow Ventana(VideoMode(800, 600), "My window");
     rectangulo1 = fm.rectangulo(10,10,200,200);
-    fm.eliminar_rectangulo(rectangulo1);
+
 
     while (Ventana.isOpen())
     {   

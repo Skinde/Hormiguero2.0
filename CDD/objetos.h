@@ -3,6 +3,22 @@
 #include"algoritmos.h"
 #include"matriz.h"
 #include<vector>
+usign coordenadas=int;
+using logitud=double;
+
+class punto_t{
+	private:
+	coordenadas pos_x;
+	coordenadas pos_y;
+	
+	public:
+	punto_t();
+	punto_t(int x, int y);
+	coordenada get_x();
+    coordenada get_y();
+    longitud get_distancia(punto_t otro_punto);
+};
+
 typedef float medi;
 class hormiga{
 	protected:
