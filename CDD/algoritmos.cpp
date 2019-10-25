@@ -4,7 +4,7 @@
 #include <vector> 
 #include<cmath>
 double dot_product(std::vector<int> A,std::vector<int> B,std::vector<int> C,std::vector<int> D){
-	//probando que se suba con mi usuario
+	//probando que se suba con mi usuario 2
 	double x,y;
 	x=A[0]*B[0]*C[0]*D[0];
 	y=A[1]*B[1]*C[0]*D[0];
