@@ -15,7 +15,7 @@ class Funciones_De_Miguel
         RectangleShape rectangle(Vector2f(x,y));
         rectangle.setSize(Vector2f(tamano_x,tamano_y));
         array_de_rectangulos.push_back(rectangle);
-        return array_de_rectangulos.size();
+        return array_de_rectangulos.size()-1;
     }
     std::vector<RectangleShape> retornar_figuras()
     {
@@ -25,8 +25,8 @@ class Funciones_De_Miguel
     {
         array_de_rectangulos.erase(array_de_rectangulos.begin() + figurita);
     }
-    
-    
-    
+
+
+
 
 };

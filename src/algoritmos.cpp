@@ -27,10 +27,20 @@ std::vector <double> cosas_de_perlin::distance_vector(double x, double y,std::ve
 	distance.push_back((y-B[1])/600);
 	return distance;
 }
+double cosas_de_perlin::distance(std::vector<double> A){
+	return sqrt(A[0]*A[0]+A[1]*A[1]);
+}
 
-
-double cosas_de_perlin::polarizacion(double A, double B){
-	return (A+B)/2;
+double cosas_de_perlin::polarizacion(double  x,double  y,std::vector<double> A,std::vector<double> B,std::vector<double> C,std::vector<double> D){
+	//Q12/Q22
+	//Q11/Q22
+	//assumed that we know the value of f at the four points Q11 = (x1, y1), Q12 = (x1, y2), Q21 = (x2, y1), and Q22 = (x2, y2)
+	//interpolation in x
+	double f1=(C[0]-x)/(C[0]-A[0]) * distance(distance_vector(x,y,A))+(x-A[0])/(C[0]-A[0])*distance(distance_vector(x,y,C));
+	double f2=(C[0]-x)/(C[0]-A[0])*distance(distance_vector(x,y,B))+(x-A[0])/(C[0]-A[0]) *distance(distance_vector(x,y,D));
+	//interpolation in y
+	double f=(B[1]-y)/(B[1]-A[1])*f1+(y-A[1])/(B[1]-A[1])*f2;
+	return f2;
 }
 
 //perling:
@@ -59,32 +69,26 @@ double**  cosas_de_perlin::perlin(int nfilas, int ncol){
 			if (y>0 && y<nfilas/2 && x>0 && x<ncol/2)
 			{
 				//Sector 1
-				double polarizacion1 = polarizacion(dot_product(distance_vector(x,y,posiciones[0]),gradiente[0]),dot_product(distance_vector(x,y,posiciones[1]),gradiente[1]));
-				double polarizacion2 = polarizacion(dot_product(distance_vector(x,y,posiciones[3]),gradiente[3]),dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]));
-				mapa[y][x] = polarizacion(polarizacion1, polarizacion2);
-			}
+				mapa[y][x] = polarizacion(x,y,gradiente[0],gradiente[1],gradiente[3],gradiente[4]);
+ 			}
 			if (y>0 && y<nfilas/2 && x>ncol/2 && x<ncol)
 			{
 				//Sector 2
-				double polarizacion3 = polarizacion(dot_product(distance_vector(x,y,posiciones[1]),gradiente[1]),dot_product(distance_vector(x,y,posiciones[2]),gradiente[2]));
-				double polarizacion4 = polarizacion(dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),dot_product(distance_vector(x,y,posiciones[5]),gradiente[5]));
-				mapa[y][x] = polarizacion(polarizacion3, polarizacion4);
+				mapa[y][x] = polarizacion(x,y,gradiente[1],gradiente[2],gradiente[4],gradiente[5]);
+
 
 			}
 			if (y>nfilas/2 && y<nfilas && x>0 && x<ncol/2)
 			{
 				//Sector 3
-				double polarizacion5 = polarizacion(dot_product(distance_vector(x,y,posiciones[3]),gradiente[3]),dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]));
-				double polarizacion6 = polarizacion(dot_product(distance_vector(x,y,posiciones[6]),gradiente[6]),dot_product(distance_vector(x,y,posiciones[7]),gradiente[7]));
-				mapa[y][x] = polarizacion(polarizacion5, polarizacion6);
+				mapa[y][x] = polarizacion(x,y,gradiente[4],gradiente[5],gradiente[7],gradiente[8]);
+
 
 			}
 			if (y>nfilas/2 && y<nfilas && x>ncol/2 && x<ncol)
 			{
 				//Sector 4
-				double polarizacion7 = polarizacion(dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),dot_product(distance_vector(x,y,posiciones[5]),gradiente[5]));
-				double polarizacion8 = polarizacion(dot_product(distance_vector(x,y,posiciones[7]),gradiente[7]),dot_product(distance_vector(x,y,posiciones[8]),gradiente[8]));
-				mapa[y][x] = polarizacion(polarizacion7, polarizacion8);
+				mapa[y][x] = polarizacion(x,y,gradiente[0],gradiente[1],gradiente[3],gradiente[4]);
 
 
 			}
@@ -92,5 +96,4 @@ double**  cosas_de_perlin::perlin(int nfilas, int ncol){
 		}
 	}
 	return mapa;
-
 }
