@@ -15,6 +15,12 @@ class hormiga{
 	public:
 		hormiga(){}
 		virtual ~hormiga(){}
+
+		int get_vida();
+		int get_gen();
+		int get_x();
+		int get_y();
+		int input();
 };
 class insecto{
 	private:
