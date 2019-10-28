@@ -9,12 +9,12 @@ class cosas_de_perlin
 {
     public:
     float randintok(float first, float last);
-    double dot_product(std::vector<double> A,std::vector<double> B);
-    std::vector <double> distance_vector(double x, double y,std::vector<double> B);
-    double distance(std::vector <double> A, std::vector<double> B);
-    double polarizacion(double  x,double  y,std::vector<double> A,std::vector<double> B,std::vector<double> C,std::vector<double> D);
-    double**  perlin(int nfilas, int ncol);
-    double distance(std::vector<double> A);
+    float dot_product(std::vector<float> A,std::vector<float> B);
+    std::vector <float> distance_vector(float x, float y,std::vector<float> B);
+    float distance(std::vector <float> A, std::vector<float> B);
+    float polarizacion(float  x,float  y,std::vector<float> A,std::vector<float> B,std::vector<float> C,std::vector<float> D);
+    float**  perlin(int nfilas, int ncol);
+    float distance(std::vector<float> A);
 };
 #endif
 

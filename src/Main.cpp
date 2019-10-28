@@ -10,10 +10,11 @@ int main()
     //Creacion de objetos y ventana
     Funciones_De_Miguel fm;
     cosas_de_perlin  cdp;
+    int gg;
     RenderWindow Ventana(VideoMode(800,600), "My window");
-    double** mapi = new double*[600];
+    float** mapi = new float*[600];
 	for(int i=0;i<600;i++){
-		mapi[i]=new double[800];
+		mapi[i]=new float[800];
 	}
 
     mapi = cdp.perlin(600,800);
@@ -22,10 +23,10 @@ int main()
         {
             for (int x =0; x<800; x++)
             {
-                if (mapi[y][x])
-                {
-                    fm.rectangulo(x,y,1,1);
-                }
+
+                    gg = fm.rectangulo(x,y,1,1);
+                    fm.cambiar_color(gg,((mapi[y][x])*100),((mapi[y][x])*100),((mapi[y][x])*100));
+
             }
         }
 
