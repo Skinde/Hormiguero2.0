@@ -6,7 +6,6 @@
 typedef std::random_device device;
 typedef std::uniform_real_distribution<float> distribution;
 device dev;
-<<<<<<< HEAD
 float cosas_de_perlin::smooth (float x){
 	if(x <= 0.0)
 		x = 0.0;
@@ -21,38 +20,36 @@ float** cosas_de_perlin::filtro_bordes(float** mapa){
 	//vertices
 	//|x|=800//|y|=600
 	//vertice superior izquierdo
-	for(int i=0;i<600;i++){
-		for(int j;j<800;j++){
-	if (x==0 && y==0)
-		mapa[y][x]=mapa[y+1][x+1];
-	//vertice inferior izquierdo
-	else if(x==0 && y==600)
-		mapa[y][x]=mapa[y-1][x+1];
-	//vertice superior derecho
-	else if(x==0 && y==600)
-		mapa[y][x]=mapa[y+1][x-1];
-	//vertice inferior derecho
-	else if(x==800 && y==600)
-		mapa[y][x]=mapa[x-1][y-1];
-	//fila superior
-	else if (y==0 && x>0 && x<800)
-		mapa[y][x]=(mapa[y+1][x-1]+mapa[y+1][x]+mapa[y+1][x+1])/3;
-	//fila del medio
-	else if(y==300 && x>0 && x<800)
-		mapa[y][x]=(mapa[y-1][x-1]+mapa[y-1][x]+mapa[y-1][x+1]+mapa[y+1][x-1]+mapa[y+1][x]+mapa[y+1][x+1])/6;
-	//file inferior
-	else if(y==600 && x>0 && x<800)
-		mapa[y][x]==(mapa[y-1][x-1]+mapa[y-1][x]+mapa[y-1][x+1])/3;
-
+	for(int y=0;y<600;y++){
+		for(int x;x<800;x++){
+			if (x==0 && y==0)
+				mapa[y][x]=mapa[y+1][x+1];
+			//vertice inferior izquierdo
+			else if(x==0 && y==600)
+				mapa[y][x]=mapa[y-1][x+1];
+			//vertice superior derecho
+			else if(x==0 && y==600)
+				mapa[y][x]=mapa[y+1][x-1];
+			//vertice inferior derecho
+			else if(x==800 && y==600)
+				mapa[y][x]=mapa[x-1][y-1];
+			//fila superior
+			else if (y==0 && x>0 && x<800)
+				mapa[y][x]=(mapa[y+1][x-1]+mapa[y+1][x]+mapa[y+1][x+1])/3;
+			//fila del medio
+			else if(y==300 && x>0 && x<800)
+				mapa[y][x]=(mapa[y-1][x-1]+mapa[y-1][x]+mapa[y-1][x+1]+mapa[y+1][x-1]+mapa[y+1][x]+mapa[y+1][x+1])/6;
+			//file inferior
+			else if(y==600 && x>0 && x<800)
+				mapa[y][x]==(mapa[y-1][x-1]+mapa[y-1][x]+mapa[y-1][x+1])/3;
 		}
 	}
 	return mapa;
-=======
+	}
 
 float cosas_de_perlin::distance(int x, std::vector<float> B)
 {
 	return (B[0]-x)/400;
->>>>>>> 8bb1513ef3e114247036fab5d9ecc1c977b42ded
 }
 
 float cosas_de_perlin::randintok(float first, float last){

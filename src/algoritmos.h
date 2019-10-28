@@ -13,12 +13,9 @@ class cosas_de_perlin
     float distance(int x, std::vector<float> B);
     float polarizacion(float A, float B,float x);
     float**  perlin(int nfilas, int ncol);
-<<<<<<< HEAD
     float distance(std::vector<float> A);
-    float** filtro_bordes(float** mapa){
+    float** filtro_bordes(float** mapa);
     float smooth (float  x);
-=======
->>>>>>> 8bb1513ef3e114247036fab5d9ecc1c977b42ded
 };
 #endif
 
