@@ -80,26 +80,26 @@ float**  cosas_de_perlin::perlin(int nfilas, int ncol){
 			if (y>0 && y<nfilas/2 && x>0 && x<ncol/2)
 			{
 				//Sector 1
-				mapa[y][x] = polarizacion(x,y,gradiente[0],gradiente[1],gradiente[3],gradiente[4]);
+				mapa[y][x] = smooth(polarizacion(x,y,gradiente[0],gradiente[1],gradiente[3],gradiente[4]));
  			}
 			if (y>0 && y<nfilas/2 && x>ncol/2 && x<ncol)
 			{
 				//Sector 2
-				mapa[y][x] = polarizacion(x,y,gradiente[1],gradiente[2],gradiente[4],gradiente[5]);
+				mapa[y][x] = smooth(polarizacion(x,y,gradiente[1],gradiente[2],gradiente[4],gradiente[5]));
 
 
 			}
 			if (y>nfilas/2 && y<nfilas && x>0 && x<ncol/2)
 			{
 				//Sector 3
-				mapa[y][x] = polarizacion(x,y,gradiente[3],gradiente[4],gradiente[6],gradiente[7]);
+				mapa[y][x] = smooth(polarizacion(x,y,gradiente[3],gradiente[4],gradiente[6],gradiente[7]));
 
 
 			}
 			if (y>nfilas/2 && y<nfilas && x>ncol/2 && x<ncol)
 			{
 				//Sector 4
-				mapa[y][x] = polarizacion(x,y,gradiente[4],gradiente[5],gradiente[7],gradiente[8]);
+				mapa[y][x] = smooth(polarizacion(x,y,gradiente[4],gradiente[5],gradiente[7],gradiente[8]));
 
 
 			}
