@@ -6,6 +6,17 @@
 typedef std::random_device device;
 typedef std::uniform_real_distribution<float> distribution;
 device dev;
+float cosas_de_perlin::smooth (float x){
+	if(x <= 0.0)
+		x = 0.0;
+	else if(x<1.0)
+		x = 6*pow(x,5)-15*pow(x,4)+10*pow(x,3);
+	else if(x == 1.0)
+		x = 1.0;
+	return x;
+}
+
+
 
 float cosas_de_perlin::randintok(float first, float last){
 	std::mt19937 gen(dev());
