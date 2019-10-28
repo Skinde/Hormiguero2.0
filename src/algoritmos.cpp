@@ -34,7 +34,7 @@ std::vector <float> cosas_de_perlin::distance_vector(float x, float y,std::vecto
 }
 
 
-float cosas_de_perlin::polarizacion(float A, float B, float x){
+float cosas_de_perlin::polarizacion(float B, float A, float x){
 	if (x<0)
 	{
 		x=x*(-1);
