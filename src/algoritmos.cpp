@@ -6,17 +6,11 @@
 typedef std::random_device device;
 typedef std::uniform_real_distribution<float> distribution;
 device dev;
-float cosas_de_perlin::smooth (float x){
-	if(x <= 0.0)
-		x = 0.0;
-	else if(x<1.0)
-		x = 6*pow(x,5)-15*pow(x,4)+10*pow(x,3);
-	else if(x == 1.0)
-		x = 1.0;
-	return x;
+
+float cosas_de_perlin::distance(int x, std::vector<float> B)
+{
+	return (B[0]-x)/400;
 }
-
-
 
 float cosas_de_perlin::randintok(float first, float last){
 	std::mt19937 gen(dev());
@@ -34,24 +28,18 @@ float cosas_de_perlin::dot_product(std::vector<float> A,std::vector<float> B){
 }
 std::vector <float> cosas_de_perlin::distance_vector(float x, float y,std::vector<float> B){
 	std::vector <float> distance;
-	distance.push_back((x-B[0])/800);
-	distance.push_back((y-B[1])/600);
+	distance.push_back((x-B[0])/400);
+	distance.push_back((y-B[1])/300);
 	return distance;
 }
-float cosas_de_perlin::distance(std::vector<float> A){
-	return sqrt(A[0]*A[0]+A[1]*A[1]);
-}
 
-float cosas_de_perlin::polarizacion(float  x,float  y,std::vector<float> A,std::vector<float> B,std::vector<float> C,std::vector<float> D){
-	//Q12/Q22
-	//Q11/Q22
-	//assumed that we know the value of f at the four points Q11 = (x1, y1), Q12 = (x1, y2), Q21 = (x2, y1), and Q22 = (x2, y2)
-	//interpolation in x
-	float f1=(C[0]-x)/(C[0]-A[0]) * distance(distance_vector(x,y,A))+(x-A[0])/(C[0]-A[0])*distance(distance_vector(x,y,C));
-	float f2=(C[0]-x)/(C[0]-A[0])*distance(distance_vector(x,y,B))+(x-A[0])/(C[0]-A[0]) *distance(distance_vector(x,y,D));
-	//interpolation in y
-	float f=(B[1]-y)/(B[1]-A[1])*f1+(y-A[1])/(B[1]-A[1])*f2;
-	return f;
+
+float cosas_de_perlin::polarizacion(float A, float B, float x){
+	if (x<0)
+	{
+		x=x*(-1);
+	}
+	return (x*A)+((1-x)*B);
 }
 
 //perling:
@@ -80,26 +68,32 @@ float**  cosas_de_perlin::perlin(int nfilas, int ncol){
 			if (y>0 && y<nfilas/2 && x>0 && x<ncol/2)
 			{
 				//Sector 1
-				mapa[y][x] = smooth(polarizacion(x,y,gradiente[0],gradiente[1],gradiente[3],gradiente[4]));
- 			}
+				float polarizacion1 = polarizacion(dot_product(distance_vector(x,y,posiciones[0]),gradiente[0]),dot_product(distance_vector(x,y,posiciones[1]),gradiente[1]),distance(x,posiciones[0]));
+				float polarizacion2 = polarizacion(dot_product(distance_vector(x,y,posiciones[3]),gradiente[3]),dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),distance(x,posiciones[3]));
+				mapa[y][x] = polarizacion(polarizacion1, polarizacion2,(posiciones[4][1]-y)/300);
+			}
 			if (y>0 && y<nfilas/2 && x>ncol/2 && x<ncol)
 			{
 				//Sector 2
-				mapa[y][x] = smooth(polarizacion(x,y,gradiente[1],gradiente[2],gradiente[4],gradiente[5]));
-
+				float polarizacion3 = polarizacion(dot_product(distance_vector(x,y,posiciones[1]),gradiente[1]),dot_product(distance_vector(x,y,posiciones[2]),gradiente[2]),distance(x,posiciones[1]));
+				float polarizacion4 = polarizacion(dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),dot_product(distance_vector(x,y,posiciones[5]),gradiente[5]),distance(x,posiciones[4]));
+				mapa[y][x] = polarizacion(polarizacion3, polarizacion4,(posiciones[5][1]-y)/300);
 
 			}
 			if (y>nfilas/2 && y<nfilas && x>0 && x<ncol/2)
 			{
 				//Sector 3
-				mapa[y][x] = smooth(polarizacion(x,y,gradiente[3],gradiente[4],gradiente[6],gradiente[7]));
-
+				float polarizacion5 = polarizacion(dot_product(distance_vector(x,y,posiciones[3]),gradiente[3]),dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),distance(x,posiciones[3]));
+				float polarizacion6 = polarizacion(dot_product(distance_vector(x,y,posiciones[6]),gradiente[6]),dot_product(distance_vector(x,y,posiciones[7]),gradiente[7]),distance(x,posiciones[6]));
+				mapa[y][x] = polarizacion(polarizacion5, polarizacion6,(posiciones[7][1]-y)/300);
 
 			}
 			if (y>nfilas/2 && y<nfilas && x>ncol/2 && x<ncol)
 			{
 				//Sector 4
-				mapa[y][x] = smooth(polarizacion(x,y,gradiente[4],gradiente[5],gradiente[7],gradiente[8]));
+				float polarizacion7 = polarizacion(dot_product(distance_vector(x,y,posiciones[4]),gradiente[4]),dot_product(distance_vector(x,y,posiciones[5]),gradiente[5]),distance(x,posiciones[4]));
+				float polarizacion8 = polarizacion(dot_product(distance_vector(x,y,posiciones[7]),gradiente[7]),dot_product(distance_vector(x,y,posiciones[8]),gradiente[8]),distance(x,posiciones[7]));
+				mapa[y][x] = polarizacion(polarizacion7, polarizacion8,(posiciones[8][1]-y)/300);
 
 
 			}
@@ -107,4 +101,5 @@ float**  cosas_de_perlin::perlin(int nfilas, int ncol){
 		}
 	}
 	return mapa;
+
 }

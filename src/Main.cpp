@@ -25,7 +25,7 @@ int main()
             {
 
                     gg = fm.rectangulo(x,y,1,1);
-                    fm.cambiar_color(gg,((mapi[y][x])*100),((mapi[y][x])*100),((mapi[y][x])*100));
+                    fm.cambiar_color(gg,((mapi[y][x]+1)*100),((mapi[y][x]+1)*100),((mapi[y][x]+1)*100));
 
             }
         }
