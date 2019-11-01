@@ -1,4 +1,6 @@
 #include"objetos.h"
+#include<ctime>
+#include<cstdlib>
 #include<algorithm>
 #include<iostream>
 
@@ -8,7 +10,7 @@ void soldado::movimiento(std::vector<std::vector<float>> matriz){
 	while(true){
 		  srand(time(NULL));
 		  float arr[] = {matriz[posx-1][posy+1], matriz[posx][posy+1], matriz[posx+1][posy+1], matriz[posx-1][posy], matriz[posx+1][posy], matriz[posx-1][posy-1], matriz[posx][posy-1], matriz[posx+1][posy-1]};
-        	sort(arr, arr + 8);
+        	std::sort(arr, arr + 8);
         	int R = log2(rand() % 256);
 		if (arr[R] == matriz[lposx][lposy]){
 			R--;
@@ -66,7 +68,7 @@ void obrera::movimiento(std::vector<std::vector<float>> matriz){
 
         float arr[] = {matriz[posx-1][posy+1], matriz[posx][posy+1], matriz[posx+1][posy+1], matriz[posx-1][posy], matriz[posx+1][posy], matriz[posx-1][posy-1], matriz[posx][posy-1], ma
 triz[posx+1][posy-1]};
-        sort(arr, arr + 8);
+        std::sort(arr, arr + 8);
         int R = log2(rand() % 256);
 	if (arr[R] == matriz[lposx][lposy]){
                         R--;
@@ -122,7 +124,7 @@ void reina::movimiento(std::vector<std::vector<float>> matriz){
 
         float arr[] = {matriz[posx-1][posy+1], matriz[posx][posy+1], matriz[posx+1][posy+1], matriz[posx-1][posy], matriz[posx+1][posy], matriz[posx-1][posy-1], matriz[posx][posy-1], ma
 triz[posx+1][posy-1]};
-        sort(arr, arr + 8);
+        std::sort(arr, arr + 8);
         int R = log2(rand() % 256);
         if(arr[R] == matriz[posx-1][posy+1]){
                 posy += 1;
