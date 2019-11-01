@@ -1,20 +1,6 @@
 #include"objetos.h"
 #include<iostream>
-//metodos del mundo (no oficial, solo testeo)//
 
-void mundo::set_nfilcol(medi x, medi y){
-	ncol = x;
-	nfil = y;
-}
-void mundo::set_mundo(){
-	espacio = generar_matriz(nfil, ncol);
-	perlin_generator(espacio);
-	imprimir_matriz(espacio);
-}
-void mundo::set_feromonas(){
-        feromonas = set_humedad(nfil, ncol);
-}
-//fin de mundo//
 //metodos del soldado//
 void soldado::movimiento(std::vector<std::vector<float>> matriz){
 	srand(time(NULL));
