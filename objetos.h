@@ -1,7 +1,5 @@
 #ifndef OBJETOS_H_
 #define OBJETOS_H_
-#include"algoritmos.h"
-#include"matriz.h"
 #include<vector>
 typedef float medi;
 class hormiga{
@@ -40,21 +38,6 @@ class insecto{
 		insecto(){}
 		virtual ~insecto(){}
 		void movimiento();
-};
-
-class mundo{
-	private:
-		medi ncol;
-		medi nfil;
-		std::vector<std::vector<medi>> espacio;
-		std::vector<std::vector<medi>> humedad;
-		std::vector<std::vector<medi>> feromonas;
-	public:
-		mundo(){}
-		void set_nfilcol(medi y, medi x);
-		void set_mundo();
-		void set_feromonas();
-		virtual ~mundo(){}
 };
 
 class obrera: public hormiga{
