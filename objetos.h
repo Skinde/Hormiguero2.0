@@ -20,6 +20,8 @@ class hormiga{
 
 class food{
 	private:
+		int color[3];
+		medi cantidad;
 	public:
 		food(){}
 		virtual ~food(){}
@@ -37,6 +39,9 @@ class insecto{
 	public:
 		insecto(){}
 		virtual ~insecto(){}
+		void ataque(obrera &obrera);
+		void ataque(soldado &soldado);
+		void ataque(reina &reina);
 		void movimiento();
 };
 
@@ -48,6 +53,9 @@ class obrera: public hormiga{
 			vida = 30.0;
 			ataque = 2.0;
 		}
+		void ataque(obrera &obrera);
+		void ataque(soldado &soldado);
+		void ataque(reina &reina);
 		void movimiento(std:vector<std::vector<float>> matriz);
 	 	virtual ~obrera(){}
 };
@@ -58,6 +66,10 @@ class soldado: public hormiga{
 			vida = 100.0;
 			ataque = 50.0;
 		}
+		void ataque(insecto &insecto);
+		void ataque(obrera &obrera);
+		void ataque(soldado &soldado);
+		void ataque(reina &reina);
 		void movimiento(std::vector<std::vector<float>> matriz);
 		virtual ~soldado(){}
 };
