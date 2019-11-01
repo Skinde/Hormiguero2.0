@@ -1,4 +1,5 @@
 #include"objetos.h"
+#include<algorithm>
 #include<iostream>
 
 //metodos del soldado//
