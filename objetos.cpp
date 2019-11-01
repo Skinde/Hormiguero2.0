@@ -1,5 +1,7 @@
 #include"objetos.h"
 #include<iostream>
+//metodos del mundo (no oficial, solo testeo)//
+
 void mundo::set_nfilcol(medi x, medi y){
 	ncol = x;
 	nfil = y;
@@ -12,8 +14,8 @@ void mundo::set_mundo(){
 void mundo::set_feromonas(){
         feromonas = set_humedad(nfil, ncol);
 }
-
-
+//fin de mundo//
+//metodos del soldado//
 void soldado::movimiento(std::vector<std::vector<float>> matriz){
 	srand(time(NULL));
 	while(true){
@@ -69,6 +71,8 @@ void soldado::movimiento(std::vector<std::vector<float>> matriz){
 		lposx = posx;
 	}
 }
+//fin//
+//metodos obrera//
 void obrera::movimiento(std::vector<std::vector<float>> matriz){
 	  while(true){
                   srand(time(NULL));
@@ -122,9 +126,9 @@ triz[posx+1][posy-1]};
 	lposx = posx;
 	lposy = posy
 	}
-	  
-
 }
+//fin//
+//metodos reina//
 void reina::movimiento(std::vector<std::vector<float>> matriz){
 	while(true){
                   srand(time(NULL));
@@ -190,3 +194,4 @@ void reina::crear_soldado(){
 void reina::crear_reina(){
 
 }
+//fin metodos reina//
