@@ -11,8 +11,8 @@ En esta simulación se podrá apreciar como las hormigas reinas se adaptan al am
  2. Algoritmo Genetico: Este algoritmo es parte del objeto hormiga reina el cual define como administra la colonia la hormiga reina y crea copias de los datos recolectados para trasladarselo a sus sucesoras.
  3. Ant Colony Optimization: Este algoritmo es el encargado del movimiento de las hormigas en general.Utiliza la generacion y degradacion de las hormonas puestas por hormigas obreras y soldados.
 
-## Objetos
-
+## Clases/Objetos
+ * Hormiga: Es la clase padre de las siguientes tre clases, esta contiene los atributos color, tamaño, vida, etc. 
  * Hormiga reina: Encargada de poner los huevos en la colonia y a su vez administrar dicha colonia.
  * Hormiga soldado: Encargada de defender la colonia asimismo ayuda en la caza de insectos.
  * Hormiga obrera: Encargada de la recolección de la comida, exploración del terreno y cuidado de las larvas.
