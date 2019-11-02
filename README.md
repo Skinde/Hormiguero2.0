@@ -32,5 +32,7 @@ En esta simulación se podrá apreciar como las hormigas reinas se adaptan al am
 * Perling: Miguel Lama y Jean Paul Huby
 * Relaciones de objetos: Jean Paul Huby
 
+## Diagrama de la relacion de objetos
 
+https://drive.google.com/file/d/1UL78Bi87HkEC2BE_pmYqaWmu09nxu19Q/view?usp=sharing
 
