@@ -20,6 +20,12 @@ En esta simulación se podrá apreciar como las hormigas reinas se adaptan al am
  * Mundo: Se va a generar con el algoritmo de perlin y va a tener múltiples propiedades como: humedad, altura, etc.
  * fm: "fm" es el objeto de la clase Funciones_De_Miguel su proposito es proveer funciones que automatizen el uso de la interfaz      
        visual
+## Objetivos cumplidos
+*Creacion de los objetos
+*Creacion del Perling noise
+*Renderizado del perling
+*Creacion del algoritmo de movimiento logaritmico
+
 ## Roles
 * Clases y objetos: Diego paredes
 * SFM y renderizado: Miguel Lama
