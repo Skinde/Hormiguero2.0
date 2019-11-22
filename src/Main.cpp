@@ -36,13 +36,13 @@ int main()
             {
 
                     gg = fm.rectangulo(x,y,10,10);
-                    if (((mapi[y][x]+1)*30) > 30)
+                    if (((mapi[y][x]+1)*30) > 10)
                     {
-                        fm.cambiar_color(gg,((mapi[y][x]+1)*10),((mapi[y][x]+1)*30),((mapi[y][x]+1)*10));
+                        fm.cambiar_color(gg,((mapi[y][x]+1)*30),((mapi[y][x]+1)*50),((mapi[y][x]+1)*30));
                     }
                     else
                     {
-                        fm.cambiar_color(gg,((mapi[y][x]+1)*10),((mapi[y][x]+1)*10),((mapi[y][x]+1)*30));
+                        fm.cambiar_color(gg,((mapi[y][x]+1)*30),((mapi[y][x]+1)*30),((mapi[y][x]+1)*50));
                     }
                     
                     
