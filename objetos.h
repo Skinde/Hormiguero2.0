@@ -90,6 +90,17 @@ class reina: public hormiga{
 		void movimiento(std::vector<std::vector<float>> matriz);
 		virtual ~reina(){}
 };
+
+class objeto_ambiente{
+protected:
+	int pos_x;
+	int pos_y;
+	int tamano;
+public:
+	objeto_ambiente(int x, int y, int tam);
+	virtual  ~objeto_ambiente();
+};
+
 class comida:public objeto_ambiente{
 private:
 	int color[3];
