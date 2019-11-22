@@ -90,4 +90,13 @@ class reina: public hormiga{
 		void movimiento(std::vector<std::vector<float>> matriz);
 		virtual ~reina(){}
 };
+class comida:public objeto_ambiente{
+private:
+	int color[3];
+	medi cantidad;
+public:
+	comida();
+	void convertir_hormiga_comida(int x, int y, int tam,int cant);
+
+};
 #endif
