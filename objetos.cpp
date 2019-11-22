@@ -183,4 +183,20 @@ void reina::crear_soldado(){
 void reina::crear_reina(){
 
 }
+objeto_ambiente::objeto_ambiente(int x, int y, int tam) {
+    pos_x=x;
+    pos_y=y;
+    tamano=tam
+}
+
+comida::comida(int x, int y, int tam):objeto_ambiente(x,y,tam,int can){
+    cantidad=can;
+}
+
+comida comida::convertir_hormiga_comida(hormiga& h) {
+    comida c(h.posx,h.posy,1,1);
+    delete hormiga;
+    return c;
+
+}
 //fin metodos reina//
