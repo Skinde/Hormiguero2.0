@@ -3,10 +3,13 @@
 #include<iostream>
 #include<random>
 #include<cmath>
+#include<string>
 //#include"algoritmos.cpp"
 class cosas_de_perlin
 {
+    int pantalla_x, pantalla_y;
     public:
+    cosas_de_perlin(int x,int y);
     float randintok(float first, float last);
     float dot_product(std::vector<float> A,std::vector<float> B);
     std::vector <float> distance_vector(float x, float y,std::vector<float> B);
@@ -17,7 +20,10 @@ class cosas_de_perlin
     float** filtro_bordes(float** mapa);
     float smooth (float  x);
 };
+
+
 #endif
+
 
 
 

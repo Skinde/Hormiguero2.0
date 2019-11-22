@@ -31,6 +31,11 @@ class Funciones_De_Miguel
         array_de_rectangulos[p].setFillColor(Color(r,g,b));
     }
 
+    void mover(int x, int y, int pos)
+    {
+    array_de_rectangulos[pos].setPosition(Vector2f(x,y));
+    }
+
 
 
 

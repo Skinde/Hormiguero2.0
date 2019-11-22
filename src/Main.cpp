@@ -1,6 +1,6 @@
 #include "head.h"
 #include "algoritmos.h"
-#include "Main.hpp"
+
 
 
 
@@ -8,28 +8,50 @@
 int main()
 {
     //Creacion de objetos y ventana
+    int pantalla_y, pantalla_x, cantidad_de_hormigas;
+    std::string accion; 
+    std::cin >> pantalla_x;
+    std::cin >> pantalla_y;
+    std::cin >> cantidad_de_hormigas;
+    cosas_de_perlin  cdp(pantalla_x, pantalla_y);
     Funciones_De_Miguel fm;
-    cosas_de_perlin  cdp;
+    float** mapa_hormonal = new float*[pantalla_y];
+    for (int y=0; y<pantalla_y;y++)
+    {
+        mapa_hormonal[y]=new float[pantalla_x];
+    }
     int gg;
-    RenderWindow Ventana(VideoMode(800,600), "My window");
-    float** mapi = new float*[600];
-	for(int i=0;i<600;i++){
-		mapi[i]=new float[800];
+    RenderWindow Ventana(VideoMode(pantalla_x,pantalla_y), "My window");
+    float** mapi = new float*[pantalla_y];
+	for(int i=0;i<pantalla_y;i++){
+		mapi[i]=new float[pantalla_x];
+
 	}
 
-    mapi = cdp.perlin(600,800);
+    mapi = cdp.perlin(pantalla_y,pantalla_x);
 
-    for (int y = 0;y<600;y++)
+    for (int y = 0;y<pantalla_y;y+=10)
         {
-            for (int x =0; x<800; x++)
+            for (int x =0; x<pantalla_x; x+=10)
             {
 
-                    gg = fm.rectangulo(x,y,1,1);
-                    fm.cambiar_color(gg,((mapi[y][x]+1)*100),((mapi[y][x]+1)*100),((mapi[y][x]+1)*100));
+                    gg = fm.rectangulo(x,y,10,10);
+                    if (((mapi[y][x]+1)*30) > 30)
+                    {
+                        fm.cambiar_color(gg,((mapi[y][x]+1)*10),((mapi[y][x]+1)*30),((mapi[y][x]+1)*10));
+                    }
+                    else
+                    {
+                        fm.cambiar_color(gg,((mapi[y][x]+1)*10),((mapi[y][x]+1)*10),((mapi[y][x]+1)*30));
+                    }
+                    
+                    
 
             }
         }
-
+        Ventana.setFramerateLimit(60);
+    
+    
     while (Ventana.isOpen())
     {
         // Manejador de eventos
@@ -40,8 +62,9 @@ int main()
                 Ventana.close();
         }
         // Codigo
-
-
+        
+       
+        
 
 
 
