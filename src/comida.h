@@ -10,7 +10,10 @@ class food{
 		pos x;
 		pos y;
 	public:
-		food(pos equis, pos ye, color eregebe[3]);
+		food(pos equis, pos ye){
+			x = equis;
+			y = ye;
+		}
 		void perder_comida();
 		virtual ~food(){}
 

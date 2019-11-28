@@ -1,19 +1,27 @@
 #include"hormi.h"
-
-//reina metodos
-		reina::reina(){
-			vida = 200.0;
-			dano = 0.0;
-
+		hormiga::hormiga(tamano e, tamano o, pos eq, pos ye, nivel live, nivel ouch){
+			w = e;
+                	h = o;
+                        x = eq;
+                        y = ye;
+                        lx = eq;
+                        ly = ye;
+                        vida = live;
+                        dano = ouch;
 		}
-                void reina::posicionamiento(pos equis, pos ye){
-			x = equis;
-			y = ye;
+//reina metodos
+		reina::reina(pos equis, pos ye): hormiga(2,3,randint(0.0, equis),randint(0.0, ye),200.0, 0.0){
+			variacion = randint(0.1, 1.0);
+			comida = 0;
+		}
+		reina::reina(pos w, pos u,nivel var): hormiga(2,3,w,u,200.0, 0.0){
+			variacion = var + 0.1;
+			comida = 0;
 		}
                 void reina::movimiento(std::vector<std::vector<nivel>> matriz){
                 	srand(time(NULL));
         		float arr[] = {matriz[x-1][y+1], matriz[x][y+1], matriz[x+1][y+1], matriz[x-1][y], matriz[x+1][y], matriz[x-1][y-1], matriz[x][y-1], matriz[x+1][y-1]};
-        		sort(arr, arr + 8);
+			std::sort(arr, arr + 8);
         		int R = log2(rand() % 256);
         		if(arr[R] == matriz[x-1][y+1]){
                 		y += 1;
@@ -43,42 +51,37 @@
                 		y -= 1;
                 		x += 1;
 			}
-}
+		}
      		void reina::poner_obrera(){
-			hormigas.push_back(new obrera);
+			hormigas.push_back(new obrera(x,y));
 		}
                 void reina::poner_soldado(){
-			hormigas.push_back(new soldado);
+			hormigas.push_back(new soldado(x, y));
 		}
-                void reina::poner_reina(){
-			hormigas.push_back(new reina);
-		}
-		void reina::crear_hormiguero(pos eq, pos ye){
-			/*dibujar rectangulo*/			
+                void reina::poner_reina(std::vector<reina*> reinas){
+			reinas.push_back(new reina(x,y, variacion));
 		}
                 void reina::vivir(std::vector<std::vector<nivel>> matriz){
-			while(true){
-				movimiento(matriz);
-				 if(matriz[y][x] > matriz[y +1][x-1] && matriz[y][x] > matriz[y +1][x] &&
-                		 matriz[y][x] > matriz[y + 1][x + 1] && matriz[y][x] > matriz[y][x - 1]
-                		 && matriz[y][x] > matriz[y][x+1] && matriz[y][x] > matriz[y-1][x-1]
-                		 && matriz[y][x] > matriz[y -1][x] && matriz[y][x] > matriz[y-1][x + 1])
+				while (true){
+				if(matriz[y][x] < matriz[y +1][x-1] && matriz[y][x] < matriz[y +1][x] &&
+                		 matriz[y][x] < matriz[y + 1][x + 1] && matriz[y][x] < matriz[y][x - 1]
+                		 && matriz[y][x] < matriz[y][x+1] && matriz[y][x] < matriz[y-1][x-1]
+                		 && matriz[y][x] < matriz[y -1][x] && matriz[y][x] < matriz[y-1][x + 1]){
                                          break;
-			}	
-			crear_hormiguero(x,y);
-
+				}
+				else
+					movimiento(matriz);
+				}
+				
 		}
         
 //fin
 //soldado metodos
-		soldado::soldado(){
-			vida = 100.0;
-			dano = 25.0;
-		}
+		soldado::soldado(pos w, pos u):hormiga(2,2,w,u,100.0, 20.0){}
                 void soldado::movimiento(std::vector<std::vector<nivel>> matriz){
 		 	srand(time(NULL));
                         float arr[] = {matriz[x-1][y+1], matriz[x][y+1], matriz[x+1][y+1], matriz[x-1][y], matriz[x+1][y], matriz[x-1][y-1], matriz[x][y-1], matriz[x+1][y-1]};
-                        sort(arr, arr + 8);
+			std::sort(arr, arr + 8);
                         int R = log2(rand() % 256);
                         if(arr[R] == matriz[x-1][y+1]){
                                 y += 1;
@@ -116,15 +119,13 @@
 
 //fin
 //obrera metodos
-		obrera::obrera(){
-			vida = 50.0;
-			dano = 5.0;
+		obrera::obrera(pos w, pos u):hormiga(1,1,w,u,50.0, 5.0){
 			comida = false;
 		}
 		void obrera::movimiento(std::vector<std::vector<nivel>> matriz){
 		 	srand(time(NULL));
                         float arr[] = {matriz[x-1][y+1], matriz[x][y+1], matriz[x+1][y+1], matriz[x-1][y], matriz[x+1][y], matriz[x-1][y-1], matriz[x][y-1], matriz[x+1][y-1]};
-                        sort(arr, arr + 8);
+			std::sort(arr, arr + 8);
                         int R = log2(rand() % 256);
                         if(arr[R] == matriz[x-1][y+1]){
                                 y += 1;

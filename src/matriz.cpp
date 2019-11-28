@@ -1,5 +1,4 @@
 #include "matriz.h"
-#include"algoritmos.h"
 #include<iostream>
 #include<random>
 #include<cmath>

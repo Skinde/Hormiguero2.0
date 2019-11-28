@@ -15,12 +15,10 @@ class insecto{
 			vida = 50.0;
 			dano = 30.0;
 		}
-		void posicionamiento();
-		void movimiento();
-		void ataque();
-		void ataque();
-		void ataque();
-		void ataque();
+		void posicionamiento(){}
+		void movimiento(){}
+		template<typename t>
+		void ataque(t& objeto){}
 		~insecto(){}
 };
 #endif
