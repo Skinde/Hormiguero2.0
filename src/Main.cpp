@@ -1,6 +1,8 @@
 #include "head.h"
 #include "algoritmos.h"
-
+#include <fstream>
+#include <sstream>
+#include <cassert>
 
 
 
@@ -16,12 +18,13 @@ int main()
     cosas_de_perlin  cdp(pantalla_x, pantalla_y);
     Funciones_De_Miguel fm;
     float** mapa_hormonal = new float*[pantalla_y];
+    RenderWindow Ventana(VideoMode(pantalla_x,pantalla_y), "My window");
+    inicio:
     for (int y=0; y<pantalla_y;y++)
     {
         mapa_hormonal[y]=new float[pantalla_x];
     }
     int gg;
-    RenderWindow Ventana(VideoMode(pantalla_x,pantalla_y), "My window");
     float** mapi = new float*[pantalla_y];
 	for(int i=0;i<pantalla_y;i++){
 		mapi[i]=new float[pantalla_x];
@@ -29,14 +32,22 @@ int main()
 	}
 
     mapi = cdp.perlin(pantalla_y,pantalla_x);
-
+    std::vector<std::vector<int>> hormonas(pantalla_y);
+    for (int y=0;y<pantalla_y;y++)
+    {
+        for (int x;x<pantalla_x;x++)
+        {
+            hormonas[y].push_back(1);
+        }
+    }
+    fuckthisshitiamback:
     for (int y = 0;y<pantalla_y;y+=10)
         {
             for (int x =0; x<pantalla_x; x+=10)
             {
 
                     gg = fm.rectangulo(x,y,10,10);
-                    if (((mapi[y][x]+1)*30) > 10)
+                    if (((mapi[y][x]+1)*30) > 25)
                     {
                         fm.cambiar_color(gg,((mapi[y][x]+1)*30),((mapi[y][x]+1)*50),((mapi[y][x]+1)*30));
                     }
@@ -60,7 +71,69 @@ int main()
         {
             if (event.type == Event::Closed)
                 Ventana.close();
+        if ((event.type == sf::Event::KeyPressed)) 
+        {
+            if (event.key.code == sf::Keyboard::J)
+            {
+                goto inicio;
+            }
+            if (event.key.code == sf::Keyboard::A)
+            {
+                std::ofstream archivo ("PERLIN.txt");
+                archivo << pantalla_y << "/" << pantalla_x << std::endl;
+                for (int y = 0;y<pantalla_y;y++)
+                {
+                    for (int x =0; x<pantalla_x; x++)
+                    {
+                        archivo << mapi[y][x] << "/";
+                    }
+                    archivo << std::endl;
+                }
+                
+            }
+            if(event.key.code == sf::Keyboard::O)
+            {
+                std::ifstream archivo ("PERLIN.txt");
+                std::string line;
+                std::string sy,sx;
+                int contador_de_linea = 0,  contador_de_columna = 0;
+                int y,x;
+                
+                std::getline(archivo,line);
+                std::stringstream ss(line);
+                std::getline(ss,sy, '/');
+                std::getline(ss,sx,'/');
+                std::vector<std::vector<float>> mapa2(pantalla_y);
+                std::cout << sy;
+
+                while (getline(archivo,line))
+                {
+                    std::string scolor;
+                    std::stringstream ss(line);
+                    while (getline(ss, scolor, '/')){
+                        mapa2[contador_de_linea].push_back(stof(scolor));
+                        contador_de_columna++;
+                    }
+                    
+                    contador_de_linea++;
+                }
+               
+                for (int y=0;y<pantalla_y;y++)
+                {
+                    for(int x=0;x<pantalla_x;x++)
+                    {
+                       mapi[y][x] = mapa2[y][x];
+                    }
+                }
+                goto fuckthisshitiamback;
+                
+
+
+            }    
         }
+        }
+        
+
         // Codigo
         
        
