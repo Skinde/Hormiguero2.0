@@ -27,6 +27,8 @@ class hormiga{
 		virtual void vivir(std::vector<std::vector<nivel>> matriz)=0;
 		void morir(){}
 		virtual ~hormiga(){}
+		pos get_x();
+		pos get_y();
 
 };
 
@@ -37,6 +39,7 @@ class reina: public hormiga{
 		nivel variacion;
 		nivel comida;
 		std::vector<hormiga*> hormigas;
+		int posicion_en_el_vector;
 	public:
 		reina(pos equis , pos ye);
 		reina( pos w, pos u, nivel var);
@@ -45,6 +48,7 @@ class reina: public hormiga{
 		void poner_soldado();
 		void poner_reina(std::vector<reina*> reinas);
 		void vivir(std::vector<std::vector<nivel>> matriz);
+		void set_posicion_en_el_vector(int pos);
 		virtual ~reina(){}
 };
 

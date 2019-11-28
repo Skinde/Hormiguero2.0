@@ -1,4 +1,5 @@
 #include"hormi.h"
+//hormiga metodos
 		hormiga::hormiga(tamano e, tamano o, pos eq, pos ye, nivel live, nivel ouch){
 			w = e;
                 	h = o;
@@ -9,6 +10,8 @@
                         vida = live;
                         dano = ouch;
 		}
+		pos hormiga::get_x(){return x;}
+		pos hormiga::get_y(){return y;}
 //reina metodos
 		reina::reina(pos equis, pos ye): hormiga(2,3,randint(0.0, equis),randint(0.0, ye),200.0, 0.0){
 			variacion = randint(0.1, 1.0);
@@ -72,9 +75,12 @@
 				else
 					movimiento(matriz);
 				}
-				
+
 		}
-        
+		void reina::set_posicion_en_el_vector(int pos){
+			posicion_en_el_vector=pos;
+		}
+
 //fin
 //soldado metodos
 		soldado::soldado(pos w, pos u):hormiga(2,2,w,u,100.0, 20.0){}
@@ -113,9 +119,9 @@
                         }
 		}
                 void soldado::vivir(std::vector<std::vector<nivel>> matriz){
-		
+
 		}
-                
+
 
 //fin
 //obrera metodos
@@ -169,6 +175,6 @@
 				movimiento(matriz);
 			}
 		}
-                
+
 
 //fin

@@ -6,12 +6,11 @@
 
 
 
-
 int main()
 {
     //Creacion de objetos y ventana
     int pantalla_y, pantalla_x, cantidad_de_hormigas;
-    std::string accion; 
+    std::string accion;
     std::cin >> pantalla_x;
     std::cin >> pantalla_y;
     std::cin >> cantidad_de_hormigas;
@@ -19,6 +18,7 @@ int main()
     Funciones_De_Miguel fm;
     float** mapa_hormonal = new float*[pantalla_y];
     RenderWindow Ventana(VideoMode(pantalla_x,pantalla_y), "My window");
+    //etiqueta de inicio
     inicio:
     for (int y=0; y<pantalla_y;y++)
     {
@@ -40,6 +40,10 @@ int main()
             hormonas[y].push_back(1);
         }
     }
+    for(int i=0;i<cantidad_de_hormigas;i++){
+
+    }
+    //etiqueta de renderizado
     fuckthisshitiamback:
     for (int y = 0;y<pantalla_y;y+=10)
         {
@@ -55,14 +59,14 @@ int main()
                     {
                         fm.cambiar_color(gg,((mapi[y][x]+1)*30),((mapi[y][x]+1)*30),((mapi[y][x]+1)*50));
                     }
-                    
-                    
+
+
 
             }
         }
         Ventana.setFramerateLimit(60);
-    
-    
+
+
     while (Ventana.isOpen())
     {
         // Manejador de eventos
@@ -71,7 +75,7 @@ int main()
         {
             if (event.type == Event::Closed)
                 Ventana.close();
-        if ((event.type == sf::Event::KeyPressed)) 
+        if ((event.type == sf::Event::KeyPressed))
         {
             if (event.key.code == sf::Keyboard::J)
             {
@@ -89,7 +93,7 @@ int main()
                     }
                     archivo << std::endl;
                 }
-                
+
             }
             if(event.key.code == sf::Keyboard::O)
             {
@@ -98,7 +102,7 @@ int main()
                 std::string sy,sx;
                 int contador_de_linea = 0,  contador_de_columna = 0;
                 int y,x;
-                
+
                 std::getline(archivo,line);
                 std::stringstream ss(line);
                 std::getline(ss,sy, '/');
@@ -114,10 +118,10 @@ int main()
                         mapa2[contador_de_linea].push_back(stof(scolor));
                         contador_de_columna++;
                     }
-                    
+
                     contador_de_linea++;
                 }
-               
+
                 for (int y=0;y<pantalla_y;y++)
                 {
                     for(int x=0;x<pantalla_x;x++)
@@ -126,18 +130,18 @@ int main()
                     }
                 }
                 goto fuckthisshitiamback;
-                
 
 
-            }    
+
+            }
         }
         }
-        
+
 
         // Codigo
-        
-       
-        
+
+
+
 
 
 
