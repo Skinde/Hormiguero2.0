@@ -4,6 +4,12 @@
 #include <sstream>
 #include <cassert>
 
+#include"hormi.h"
+#include"mundo.h"
+#include"insecto.h"
+#include"comida.h"
+
+
 
 
 int main()
@@ -20,6 +26,8 @@ int main()
     RenderWindow Ventana(VideoMode(pantalla_x,pantalla_y), "My window");
     //etiqueta de inicio
     inicio:
+
+    mundo karmaland(45, 45);
     for (int y=0; y<pantalla_y;y++)
     {
         mapa_hormonal[y]=new float[pantalla_x];
@@ -40,11 +48,11 @@ int main()
             hormonas[y].push_back(1);
         }
     }
-    for(int i=0;i<cantidad_de_hormigas;i++){
-
-    }
     //etiqueta de renderizado
     fuckthisshitiamback:
+    for(int i=0;i<cantidad_de_hormigas;i++){
+            fm.crear_hormiga_reina(pantalla_x/2,(pantalla_y/2)+i);
+    }
     for (int y = 0;y<pantalla_y;y+=10)
         {
             for (int x =0; x<pantalla_x; x+=10)
@@ -152,6 +160,13 @@ int main()
             for (auto figurin: fm.retornar_figuras())
             {
                 Ventana.draw(figurin);
+            }
+        }
+        if (fm.retornar_hormigas().size() > 0)
+        {
+            for (auto figurata: fm.retornar_hormigas())
+            {
+                Ventana.draw(figurata);
             }
         }
         Ventana.display();

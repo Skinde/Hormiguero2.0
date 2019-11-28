@@ -3,9 +3,9 @@
 #include <iostream>
 #include <vector>
 #include<cmath>
-typedef std::random_device device;
+typedef std::random_device devicetwo;
 typedef std::uniform_real_distribution<float> distribution;
-device dev;
+devicetwo devt;
 float cosas_de_perlin::smooth (float x){
 	if(x <= 0.0)
 		x = 0.0;
@@ -59,7 +59,7 @@ float cosas_de_perlin::distance(int x, std::vector<float> B)
 }
 
 float cosas_de_perlin::randintok(float first, float last){
-	std::mt19937 gen(dev());
+	std::mt19937 gen(devt());
         distribution dis(first, last);
         return dis(gen);
 }
@@ -111,12 +111,12 @@ float**  cosas_de_perlin::perlin(int nfilas, int ncol){
 		//sector 3/sector 4
 		for(int x=0; x<ncol; x++)
 		{
-			
+
 				//Sector 1
 				float polarizacion1 = polarizacion(dot_product(distance_vector(x,y,posiciones[0]),gradiente[0]),dot_product(distance_vector(x,y,posiciones[2]),gradiente[2]),distance(x,posiciones[0]));
 				float polarizacion2 = polarizacion(dot_product(distance_vector(x,y,posiciones[6]),gradiente[6]),dot_product(distance_vector(x,y,posiciones[8]),gradiente[8]),distance(x,posiciones[6]));
 				mapa[y][x] = polarizacion(polarizacion1, polarizacion2,(posiciones[4][1]-y))/pantalla_y;
-			
+
 
 		}
 	}

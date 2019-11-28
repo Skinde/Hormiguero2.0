@@ -11,6 +11,7 @@ class Funciones_De_Miguel
     private:
     std::vector<sf::RectangleShape> array_de_rectangulos;
     std::vector<reina*> hormigas;
+    std::vector<sf::RectangleShape> array_de_hormigas;
     public:
     int rectangulo(int x,int y,int tamano_x,int tamano_y)
     {
@@ -33,6 +34,10 @@ class Funciones_De_Miguel
     {
         return array_de_rectangulos;
     }
+    std::vector<RectangleShape> retornar_hormigas()
+    {
+        return array_de_hormigas;
+    }
     void eliminar_rectangulo(int figurita)
     {
         array_de_rectangulos.erase(array_de_rectangulos.begin() + figurita);
@@ -51,11 +56,11 @@ class Funciones_De_Miguel
         hormigas.push_back(temp);
 
         RectangleShape hormiga_rectangulo;
-        hormiga_rectangulo.setSize(Vector2f(2,3));
+        hormiga_rectangulo.setSize(Vector2f(10,10));
         hormiga_rectangulo.setPosition(x_t,y_t);
-
-        array_de_rectangulos.push_back(hormiga_rectangulo);
-        temp->set_posicion_en_el_vector(array_de_rectangulos.size());
+        hormiga_rectangulo.setFillColor(Color(250,0,0));
+        array_de_hormigas.push_back(hormiga_rectangulo);
+        temp->set_posicion_en_el_vector(array_de_hormigas.size());
 
         return hormigas.size()-1;
     }
