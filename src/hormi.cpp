@@ -1,5 +1,4 @@
 #include"hormi.h"
-//hormiga metodos
 		hormiga::hormiga(tamano e, tamano o, pos eq, pos ye, nivel live, nivel ouch){
 			w = e;
                 	h = o;
@@ -10,15 +9,21 @@
                         vida = live;
                         dano = ouch;
 		}
-		pos hormiga::get_x(){return x;}
-		pos hormiga::get_y(){return y;}
 //reina metodos
 		reina::reina(pos equis, pos ye): hormiga(2,3,randint(0.0, equis),randint(0.0, ye),200.0, 0.0){
-			variacion = randint(0.1, 1.0);
+			variacion_obrera = rand()%10;
+			variacion_soldado = rand()%10;
 			comida = 0;
 		}
-		reina::reina(pos w, pos u,nivel var): hormiga(2,3,w,u,200.0, 0.0){
-			variacion = var + 0.1;
+		reina::reina(pos w, pos u,nivel var_o, nivel var_s): hormiga(2,3,w,u,200.0, 0.0){
+			if(var_o > var_s){
+				variacion_obrera = var_o + 1.0;
+				variacion_soldado = var_s;
+			}
+			else{ 
+				variacion_soldado = var_s + 1.0;
+				variacion_obrera = var_o;
+			}
 			comida = 0;
 		}
                 void reina::movimiento(std::vector<std::vector<nivel>> matriz){
@@ -62,25 +67,30 @@
 			hormigas.push_back(new soldado(x, y));
 		}
                 void reina::poner_reina(std::vector<reina*> reinas){
-			reinas.push_back(new reina(x,y, variacion));
+			reinas.push_back(new reina(x,y, variacion_obrera, variacion_soldado));
 		}
                 void reina::vivir(std::vector<std::vector<nivel>> matriz){
-				while (true){
-				if(matriz[y][x] < matriz[y +1][x-1] && matriz[y][x] < matriz[y +1][x] &&
-                		 matriz[y][x] < matriz[y + 1][x + 1] && matriz[y][x] < matriz[y][x - 1]
-                		 && matriz[y][x] < matriz[y][x+1] && matriz[y][x] < matriz[y-1][x-1]
-                		 && matriz[y][x] < matriz[y -1][x] && matriz[y][x] < matriz[y-1][x + 1]){
-                                         break;
-				}
-				else
+				if(matriz[y][x] > matriz[y +1][x-1] || matriz[y][x] > matriz[y +1][x] ||
+                		 matriz[y][x] > matriz[y + 1][x + 1] || matriz[y][x] > matriz[y][x - 1]
+                		 || matriz[y][x] > matriz[y][x+1] || matriz[y][x] > matriz[y-1][x-1]
+                		 || matriz[y][x] > matriz[y -1][x] || matriz[y][x] > matriz[y-1][x + 1])
 					movimiento(matriz);
+				else{
+					nivel sum = variacion_obrera +variacion_soldado;
+					nivel ob = (variacion_obrera*10.0)/sum;
+					nivel sol= (variacion_soldado*10.0)/sum;
+					nivel v = randint(0.0,10.0);
+					if(v<=ob && v > sol)
+						poner_obrera();
+					if(v>ob && v<=sol)
+						poner_soldado();
+					if(v<ob && ob< sol)
+						poner_obrera();
+					if(v< sol && sol < ob)
+						poner_soldado();
 				}
-
 		}
-		void reina::set_posicion_en_el_vector(int pos){
-			posicion_en_el_vector=pos;
-		}
-
+        
 //fin
 //soldado metodos
 		soldado::soldado(pos w, pos u):hormiga(2,2,w,u,100.0, 20.0){}
@@ -119,9 +129,9 @@
                         }
 		}
                 void soldado::vivir(std::vector<std::vector<nivel>> matriz){
-
+			movimiento(matriz);
 		}
-
+                
 
 //fin
 //obrera metodos
@@ -166,15 +176,14 @@
 			comida = true;
 			carga = 10.0;
 		}
-                void obrera::vivir(std::vector<std::vector<nivel>> matriz){
-			while(comida = false){
-				movimiento(matriz);
-			}
-			recolectar_comida();
-			while(comida = true){
-				movimiento(matriz);
-			}
+		void obrera::depositar_comida(){
+			comida = false;
+			carga = 0.0;
 		}
-
+                void obrera::vivir(std::vector<std::vector<nivel>> matriz){
+			movimiento(matriz);
+			
+		}
+                
 
 //fin
