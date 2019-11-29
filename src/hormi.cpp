@@ -33,31 +33,31 @@
         		float arr[] = {matriz[x-1][y+1], matriz[x][y+1], matriz[x+1][y+1], matriz[x-1][y], matriz[x+1][y], matriz[x-1][y-1], matriz[x][y-1], matriz[x+1][y-1]};
 			std::sort(arr, arr + 8);
         		int R = log2(rand() % 256);
-        		if(arr[R] == matriz[x-1][y+1]){
+        		if(arr[R] == matriz[x-1][y+1]&& (y+1 < matriz.size()-1  && x-1 > 0)){
                 		y += 1;
                 		x -= 1;
         		}
-        		else if(arr[R] == matriz[x][y+1]){
+        		else if(arr[R] == matriz[x][y+1] && y+1 < matriz.size()-1){
 				y += 1;
         		}
-        		else if(arr[R] == matriz[x+1][y+1]){
+        		else if(arr[R] == matriz[x+1][y+1] && (y+1 < matriz.size()-1 && x+1 < matriz.size()-1)){
                 		y += 1;
                 		x += 1;
         		}
-        		else if(arr[R] == matriz[x-1][y]){
+        		else if(arr[R] == matriz[x-1][y] && x-1 > 0){
                			x -= 1;
         		}
-        		else if(arr[R] == matriz[x+1][y]){
+        		else if(arr[R] == matriz[x+1][y] && x+1 < matriz.size()-1){
                 		x += 1;
         		}
-        		else if(arr[R] == matriz[x-1][y-1]){
+        		else if(arr[R] == matriz[x-1][y-1] && (x-1 > 0 && y-1 > 0)){
                 		y -= 1;
                 		x -= 1;
         		}
-        		else if(arr[R] == matriz[x][y-1]){
+        		else if(arr[R] == matriz[x][y-1] && y-1 > 0){
                 		y -= 1;
                 	}
-        		else if(arr[R] == matriz[x+1][y-1]){
+        		else if(arr[R] == matriz[x+1][y-1]&& (x+1 < matriz.size()-1 && y-1 > 0)){
                 		y -= 1;
                 		x += 1;
 			}
