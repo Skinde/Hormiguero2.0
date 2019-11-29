@@ -38,8 +38,10 @@ int main()
 		mapi[i]=new float[pantalla_x];
 
 	}
+    
 
     mapi = cdp.perlin(pantalla_y,pantalla_x);
+    std::vector<std::vector<float>> mapa2(pantalla_y);
     std::vector<std::vector<int>> hormonas(pantalla_y);
     for (int y=0;y<pantalla_y;y++)
     {
@@ -48,10 +50,17 @@ int main()
             hormonas[y].push_back(1);
         }
     }
+     for (int y = 0;y<pantalla_y;y++)
+                {
+                    for (int x =0; x<pantalla_x; x++)
+                    {
+                        mapa2[y].push_back(mapi[y][x]);
+                    }
+                }
     //etiqueta de renderizado
     fuckthisshitiamback:
     for(int i=0;i<cantidad_de_hormigas;i++){
-            fm.crear_hormiga_reina(pantalla_x/2,(pantalla_y/2)+i);
+            fm.crear_hormiga_reina((pantalla_x/2)+10,(pantalla_y/2)+i);
     }
     for (int y = 0;y<pantalla_y;y+=10)
         {
@@ -116,7 +125,6 @@ int main()
                 std::getline(ss,sy, '/');
                 std::getline(ss,sx,'/');
                 std::vector<std::vector<float>> mapa2(pantalla_y);
-                std::cout << sy;
 
                 while (getline(archivo,line))
                 {
@@ -160,6 +168,15 @@ int main()
             for (auto figurin: fm.retornar_figuras())
             {
                 Ventana.draw(figurin);
+            }
+        }
+        if (fm.retornar_real_hormiga().size() > 0)
+        {
+            for (auto hormiga: fm.retornar_real_hormiga())
+            {
+            
+                hormiga->vivir(mapa2);
+                fm.mover_hormiga(hormiga);
             }
         }
         if (fm.retornar_hormigas().size() > 0)

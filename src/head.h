@@ -38,6 +38,10 @@ class Funciones_De_Miguel
     {
         return array_de_hormigas;
     }
+    std::vector<reina*> retornar_real_hormiga()
+    {
+        return hormigas;
+    }
     void eliminar_rectangulo(int figurita)
     {
         array_de_rectangulos.erase(array_de_rectangulos.begin() + figurita);
@@ -50,6 +54,10 @@ class Funciones_De_Miguel
     void mover(int x, int y, int pos)
     {
     array_de_rectangulos[pos].setPosition(Vector2f(x,y));
+    }
+    void mover_hormiga(reina* x)
+    {
+        array_de_hormigas[x->get_posicion_en_el_vector()].setPosition(Vector2f(x->get_x(),x->get_y()));
     }
     int crear_hormiga_reina(pos x_t,pos y_t){
         reina* temp=new reina(x_t,y_t);

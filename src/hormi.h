@@ -51,6 +51,10 @@ class reina: public hormiga{
 		void vivir(std::vector<std::vector<nivel>> matriz);
 		virtual ~reina(){}
 		void set_posicion_en_el_vector(int pos);
+		int get_posicion_en_el_vector()
+		{
+			return posicion_en_el_vector;
+		}
 };
 
 class soldado: public hormiga{
