@@ -9,6 +9,8 @@
                         vida = live;
                         dano = ouch;
 		}
+		pos hormiga::get_x(){return x;}
+		pos hormiga::get_y(){return y;}
 //reina metodos
 		reina::reina(pos equis, pos ye): hormiga(2,3,randint(0.0, equis),randint(0.0, ye),200.0, 0.0){
 			variacion_obrera = rand()%10;
@@ -20,7 +22,7 @@
 				variacion_obrera = var_o + 1.0;
 				variacion_soldado = var_s;
 			}
-			else{ 
+			else{
 				variacion_soldado = var_s + 1.0;
 				variacion_obrera = var_o;
 			}
@@ -90,7 +92,10 @@
 						poner_soldado();
 				}
 		}
-        
+		void reina::set_posicion_en_el_vector(int pos){
+			posicion_en_el_vector=pos;
+		}
+
 //fin
 //soldado metodos
 		soldado::soldado(pos w, pos u):hormiga(2,2,w,u,100.0, 20.0){}
@@ -131,7 +136,7 @@
                 void soldado::vivir(std::vector<std::vector<nivel>> matriz){
 			movimiento(matriz);
 		}
-                
+
 
 //fin
 //obrera metodos
@@ -182,8 +187,8 @@
 		}
                 void obrera::vivir(std::vector<std::vector<nivel>> matriz){
 			movimiento(matriz);
-			
+
 		}
-                
+
 
 //fin
