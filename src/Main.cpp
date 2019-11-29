@@ -51,9 +51,6 @@ int main()
     //etiqueta de renderizado
     fuckthisshitiamback:
     for(int i=0;i<cantidad_de_hormigas;i++){
-
-    }
-    for(int i=0;i<cantidad_de_hormigas;i++){
             fm.crear_hormiga_reina(pantalla_x/2,(pantalla_y/2)+i);
     }
     for (int y = 0;y<pantalla_y;y+=10)
